@@ -325,7 +325,7 @@ typedef double(^formula_t)(double arg);
         if (caller == nil && [stack count] > 0) 
             result = [NSString stringWithFormat: @"%@, %@", result, [self describeProgram: stack]];
         
-        return [result copy];
+        return result;
         
     }
 
