@@ -9,12 +9,15 @@
 #import "Processor.h"
 
 typedef double(^formula_t)(double arg);
+typedef double(^formula2_t)(double arg1, double arg2);
 
 @interface PrimitiveFunction : NSObject
 
     @property NSUInteger dimensionality;
     @property NSUInteger priority;
+
     @property (strong) formula_t formula;
+    @property (strong) formula2_t formula2;
 
 @end
 
@@ -26,12 +29,17 @@ typedef double(^formula_t)(double arg);
 
 @implementation PrimitiveFunction
 
-    @synthesize dimensionality, priority, formula = _formula;
+    @synthesize 
+        dimensionality, 
+        priority, 
+        formula = _formula, 
+        formula2 = _formula2;
 
     - (PrimitiveFunction *) initWithDimensionality: (NSUInteger) d
                                           priority: (NSUInteger) p {
         self.dimensionality = d;
         self.priority = p;
+        
         return self;
     }
 
@@ -52,6 +60,20 @@ typedef double(^formula_t)(double arg);
         
         return pf;
         
+    }
+
+    + (PrimitiveFunction *) unaryWithFormula: (formula_t) f {
+        return [self ofDimensionality: 1 priority: 0 formula: f];
+    }
+
+    + (PrimitiveFunction *) binaryWithFormula: (formula2_t) f 
+                                  andPriority: (NSUInteger) p
+    {
+        
+        PrimitiveFunction * result = [self ofDimensionality: 2 priority: p];
+        
+        result.formula2 = f;
+        return result;
     }
 
 @end
@@ -87,34 +109,30 @@ typedef double(^formula_t)(double arg);
                                             return M_PI; 
                                         }
              ], @"π", 
-            [PrimitiveFunction ofDimensionality: 1 
-                                       priority: 0
-                                        formula: ^(double arg) {
-                                            return sqrt(arg);
-                                        }
-             ], @"sqrt", 
-            [PrimitiveFunction ofDimensionality: 1 
-                                       priority: 0
-                                        formula: ^(double arg) { 
-                                            return sin(arg); 
-                                        }
-             ], @"sin", 
-            [PrimitiveFunction ofDimensionality: 1 
-                                       priority: 0
-                                        formula: ^(double arg) { 
-                                           return cos(arg); 
-                                        }
-            ], @"cos", 
-            [PrimitiveFunction ofDimensionality: 1
-                                       priority: 0
-                                        formula: ^(double arg) {
-                                            return - arg;
-                                        }
-             ], @"+-", 
-            [PrimitiveFunction ofDimensionality: 2 priority: 3], @"+", 
-            [PrimitiveFunction ofDimensionality: 2 priority: 3], @"-", 
-            [PrimitiveFunction ofDimensionality: 2 priority: 2], @"/", 
-            [PrimitiveFunction ofDimensionality: 2 priority: 2], @"*", 
+            [PrimitiveFunction unaryWithFormula: ^(double arg) {
+                return sqrt(arg);
+             }], @"sqrt", 
+            [PrimitiveFunction unaryWithFormula: ^(double arg) {
+                 return sin(arg);
+             }], @"sin", 
+            [PrimitiveFunction unaryWithFormula: ^(double arg) {
+                 return cos(arg);
+             }], @"cos", 
+            [PrimitiveFunction unaryWithFormula: ^(double arg) {
+                 return - arg;
+             }], @"+-", 
+            [PrimitiveFunction ofDimensionality: 2
+                                       priority: 3
+             ], @"+", 
+            [PrimitiveFunction ofDimensionality: 2
+                                       priority: 3
+             ], @"-", 
+            [PrimitiveFunction ofDimensionality: 2
+                                       priority: 2
+             ], @"/", 
+            [PrimitiveFunction ofDimensionality: 2
+                                       priority: 2
+             ], @"*", 
                 
             nil
         ]);
