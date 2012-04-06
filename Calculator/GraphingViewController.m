@@ -57,7 +57,15 @@
         NSLog(@"Pinched: %f %f", self.graphView.scale, gesture.scale );
         gesture.scale =1.0;
     }
+}
 
+- (IBAction)userDidPan:(UIPanGestureRecognizer *) gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        CGPoint translation = [gesture translationInView:self.view];
+        [self.graphView setOrigin: CGPointMake(self.graphView.origin.x + translation.x, self.graphView.origin.y + translation.y)];
+        [gesture setTranslation: CGPointZero inView: self.view];
+    }
 }
 
 - (double) yValueFor:(double)xValue {

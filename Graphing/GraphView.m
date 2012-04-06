@@ -11,22 +11,26 @@
 
 @implementation GraphView 
 
-@synthesize datasource = _datasource, scale = _scale;
+@synthesize datasource = _datasource, scale = _scale, origin = _origin;
+
+- (void)setOrigin:(CGPoint) newOrigin
+{
+    if (!CGPointEqualToPoint(newOrigin, _origin)) {
+        _origin = newOrigin;
+        [self setNeedsDisplay];
+    }
+}
 
 - (void)setScale:(CGFloat)scale
 {
     if (scale != _scale) {
         _scale = scale;
-        [self setNeedsDisplay]; // any time our scale changes, call for redraw
+        [self setNeedsDisplay];
     }
 }
 
 - (CGFloat) scale {
-    if (!_scale) {
-        _scale = 1;
-    }
-    
-    return _scale;
+    return _scale? _scale: (_scale = 1);
 }
 
 
@@ -41,8 +45,7 @@
 
 - (void)drawRect:(CGRect)rect
 {
-    
-    [AxesDrawer drawAxesInRect: rect originAtPoint: CGPointMake(rect.size.width / 2.0, rect.size.height / 2.0) scale: self.scale];
+    [AxesDrawer drawAxesInRect: rect originAtPoint: CGPointMake( self.origin.x + rect.size.width / 2.0, self.origin.y + rect.size.height / 2.0) scale: self.scale];
 }
 
 @end

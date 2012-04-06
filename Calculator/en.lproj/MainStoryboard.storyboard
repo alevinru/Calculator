@@ -413,6 +413,7 @@
                         <connections>
                             <outlet property="datasource" destination="3Gg-ZO-5TT" id="NAx-5p-40k"/>
                             <outletCollection property="gestureRecognizers" destination="CYi-zK-EIG" appends="YES" id="zcu-0r-79S"/>
+                            <outletCollection property="gestureRecognizers" destination="hQz-HE-LsH" appends="YES" id="95C-ZO-yRF"/>
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" title="Graph" id="Y6n-Ve-YWM"/>
@@ -425,6 +426,11 @@
                         <action selector="userDidPinch:" destination="3Gg-ZO-5TT" id="1yc-ZQ-5Ax"/>
                     </connections>
                 </pinchGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="hQz-HE-LsH">
+                    <connections>
+                        <action selector="userDidPan:" destination="3Gg-ZO-5TT" id="E2f-sd-UZg"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="534" y="-74"/>
         </scene>

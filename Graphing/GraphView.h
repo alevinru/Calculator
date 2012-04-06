@@ -19,5 +19,6 @@
 @property (weak, nonatomic) IBOutlet id <GraphViewDatasource> datasource;
 
 @property (nonatomic) CGFloat scale;
+@property (nonatomic) CGPoint origin;
 
 @end

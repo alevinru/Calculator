@@ -21,6 +21,8 @@
 
 - (IBAction)userDidPinch:(UIPinchGestureRecognizer *) gesture;
 
+- (IBAction)userDidPan:(UIPanGestureRecognizer *)gesture;
+
 - (double) yValueFor:(double)xValue;
 
 @end
