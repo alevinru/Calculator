@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol GraphViewDatasource <NSObject>
+
+- (double) yValueFor: (double) xValue;
+
+@end
 
 @interface GraphView : UIView
 
-@property (weak, nonatomic) IBOutlet id datasource;
+@property (weak, nonatomic) IBOutlet id <GraphViewDatasource> datasource;
 
 @property (nonatomic) CGFloat scale;
 

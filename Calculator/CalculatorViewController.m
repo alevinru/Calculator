@@ -7,6 +7,7 @@
 //
 
 #import "CalculatorViewController.h"
+#import "GraphingViewController.h"
 
 @interface CalculatorViewController ()
 
@@ -163,11 +164,9 @@
 
     - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id) sender {
         if ([segue.identifier isEqualToString: @"Show the graph"])
-            [segue.destinationViewController view];
-/*            NSRunAlertPanel (@"Segue",
-                             [NSString stringWithFormat: @"Preparing to %@", segue.identifier],
-                             NSString @"OK"
-           );
-*/    }
+            [segue.destinationViewController setProgram: self.brain.program];
+            NSLog(@"Preparing to %@", segue.identifier);
+        
+    }
 
 @end
