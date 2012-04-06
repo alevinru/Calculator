@@ -159,6 +159,9 @@ typedef double(^formula2_t)(double arg1, double arg2);
         [self.operandStack addObject: [NSNumber numberWithDouble: theOperand]];
     }
 
+    - (void) pushVariable: (NSString *) name {
+        [self.operandStack addObject: name];
+    }
 
 
     - (void) clear {

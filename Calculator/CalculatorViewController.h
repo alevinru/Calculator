@@ -31,5 +31,7 @@
     - (IBAction) signChangePressed;
 
     - (IBAction) displayProgram;
+    
+    - (IBAction) variablePressed:(UIButton *) sender;
 
 @end

@@ -89,6 +89,16 @@
         
     }
 
+    - (IBAction) variablePressed: (UIButton *) sender {
+        
+        NSString * theOperation = sender.currentTitle;
+        
+        [self enterPressed];
+        [self displayAsInput: theOperation];
+        [self.brain pushVariable: (self.resultsDisplay.text = theOperation)]; 
+        
+    }
+
     - (void) operate: (NSString*) theOperation {
         [self enterPressed];
         [self displayAsInput: theOperation];
@@ -151,5 +161,13 @@
         }
     }
 
+    - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id) sender {
+        if ([segue.identifier isEqualToString: @"Show the graph"])
+            [segue.destinationViewController view];
+/*            NSRunAlertPanel (@"Segue",
+                             [NSString stringWithFormat: @"Preparing to %@", segue.identifier],
+                             NSString @"OK"
+           );
+*/    }
 
 @end

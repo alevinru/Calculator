@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9093883152B95330096DB35 /* AxesDrawer.m in Sources */ = {isa = PBXBuildFile; fileRef = D9093881152B95330096DB35 /* AxesDrawer.m */; };
 		D92DAAA01522F21000A8D150 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92DAA9F1522F21000A8D150 /* UIKit.framework */; };
 		D92DAAA21522F21000A8D150 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92DAAA11522F21000A8D150 /* Foundation.framework */; };
 		D92DAAA41522F21000A8D150 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D92DAAA31522F21000A8D150 /* CoreGraphics.framework */; };
@@ -21,6 +22,8 @@
 		D92DAAC81522F21100A8D150 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D92DAAC61522F21100A8D150 /* InfoPlist.strings */; };
 		D92DAACB1522F21100A8D150 /* CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D92DAACA1522F21100A8D150 /* CalculatorTests.m */; };
 		D92DAAD91523609C00A8D150 /* Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = D92DAAD81523609C00A8D150 /* Processor.m */; };
+		D9BFC529152B8F1400D92A1F /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BFC528152B8F1400D92A1F /* GraphingViewController.m */; };
+		D9BFC52D152B90D400D92A1F /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BFC52C152B90D400D92A1F /* GraphView.m */; };
 		D9E9922615247B7700C43B78 /* Processor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D9E9922415247B7700C43B78 /* Processor.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +38,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D9093881152B95330096DB35 /* AxesDrawer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AxesDrawer.m; sourceTree = "<group>"; };
+		D9093882152B95330096DB35 /* AxesDrawer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AxesDrawer.h; sourceTree = "<group>"; };
 		D92DAA9B1522F21000A8D150 /* Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Calculator.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D92DAA9F1522F21000A8D150 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D92DAAA11522F21000A8D150 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -56,6 +61,10 @@
 		D92DAACA1522F21100A8D150 /* CalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorTests.m; sourceTree = "<group>"; };
 		D92DAAD71523609C00A8D150 /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
 		D92DAAD81523609C00A8D150 /* Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Processor.m; sourceTree = "<group>"; };
+		D9BFC527152B8F1400D92A1F /* GraphingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphingViewController.h; path = Calculator/GraphingViewController.h; sourceTree = "<group>"; };
+		D9BFC528152B8F1400D92A1F /* GraphingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphingViewController.m; path = Calculator/GraphingViewController.m; sourceTree = "<group>"; };
+		D9BFC52B152B90D400D92A1F /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphView.h; path = Graphing/GraphView.h; sourceTree = "<group>"; };
+		D9BFC52C152B90D400D92A1F /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphView.m; path = Graphing/GraphView.m; sourceTree = "<group>"; };
 		D9E9922515247B7700C43B78 /* Processor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Processor.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,10 +92,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D909387F152B94800096DB35 /* Graphing */ = {
+			isa = PBXGroup;
+			children = (
+				D9093881152B95330096DB35 /* AxesDrawer.m */,
+				D9093882152B95330096DB35 /* AxesDrawer.h */,
+				D9BFC528152B8F1400D92A1F /* GraphingViewController.m */,
+				D9BFC527152B8F1400D92A1F /* GraphingViewController.h */,
+				D9BFC52B152B90D400D92A1F /* GraphView.h */,
+				D9BFC52C152B90D400D92A1F /* GraphView.m */,
+			);
+			name = Graphing;
+			sourceTree = "<group>";
+		};
 		D92DAA901522F21000A8D150 = {
 			isa = PBXGroup;
 			children = (
 				D92DAAA51522F21000A8D150 /* Calculator */,
+				D909387F152B94800096DB35 /* Graphing */,
 				D92DAAC31522F21100A8D150 /* CalculatorTests */,
 				D92DAA9E1522F21000A8D150 /* Frameworks */,
 				D92DAA9C1522F21000A8D150 /* Products */,
@@ -271,6 +294,9 @@
 				D92DAAB61522F21000A8D150 /* CalculatorViewController.m in Sources */,
 				D92DAAD91523609C00A8D150 /* Processor.m in Sources */,
 				D9E9922615247B7700C43B78 /* Processor.xcdatamodeld in Sources */,
+				D9BFC529152B8F1400D92A1F /* GraphingViewController.m in Sources */,
+				D9BFC52D152B90D400D92A1F /* GraphView.m in Sources */,
+				D9093883152B95330096DB35 /* AxesDrawer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

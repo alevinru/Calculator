@@ -26,6 +26,8 @@
 
     - (void) pushOperand: (double) anOperand;
 
+    - (void) pushVariable: (NSString *) name;
+
     - (void) pop;
 
     // Если передана неизвестная операция, то результат будет 0
