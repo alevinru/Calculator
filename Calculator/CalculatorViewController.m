@@ -166,7 +166,7 @@
         if ([segue.identifier isEqualToString: @"Show the graph"])
             [self enterPressed];
             [segue.destinationViewController setProgram: self.brain.program];
-            NSLog(@"Preparing to %@", segue.identifier);
+            //NSLog(@"Preparing to: %@", segue.identifier);
         
     }
 
