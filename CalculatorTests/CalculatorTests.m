@@ -54,6 +54,12 @@
         
         STAssertEquals(1.0, [self.p performOperation: @"sin"], @"Sin doesnt work");
         
+        STAssertEquals(
+           100.0,
+           [Processor runProgram: [NSArray arrayWithObject: [NSNumber numberWithInt:100]] 
+             usingVariableValues: [NSDictionary dictionaryWithObject: @"" forKey:@"x"]],
+           @"Const program"
+        );
     }
 
 

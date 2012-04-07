@@ -15,7 +15,7 @@
 
 @property (nonatomic) CGFloat scale; 
 
-@property (weak, nonatomic) NSArray* program;
+@property (strong, nonatomic) NSArray* program;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 

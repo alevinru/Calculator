@@ -18,9 +18,9 @@
 
 @synthesize graphView = _graphView, scale = _scale, program = _program;
 
-- (void) setProgram:(NSArray *)newProgram {
+- (void) setProgram:(NSArray *) newProgram {
     if (![newProgram isEqualToArray: _program]) {
-        _program = newProgram;
+        _program = [newProgram copy];
         [self.view setNeedsDisplay];
         [self.titleLabel setText: [Processor descriptionOfProgram: newProgram]];
     }
@@ -69,6 +69,7 @@
 }
 
 - (double) yValueFor:(double)xValue {
+    NSLog(@"GraphingViewController yValyeFor program: %@", [Processor descriptionOfProgram: self.program]);
     return [Processor runProgram: self.program
              usingVariableValues: [NSDictionary dictionaryWithObject: [NSNumber numberWithDouble: xValue] forKey: @"x"]];
 }

@@ -230,7 +230,11 @@ typedef double(^formula2_t)(double arg1, double arg2);
             stack = [program mutableCopy];
         }
         
-        return [self popOperandOffProgramStack:stack];
+        double result = [self popOperandOffProgramStack:stack];
+        
+        NSLog(@"Processor runProgram: %f", result);
+        
+        return result;
         
     }
 
