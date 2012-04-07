@@ -23,6 +23,8 @@
 
 - (IBAction)userDidPan:(UIPanGestureRecognizer *)gesture;
 
+- (IBAction)userDidTap:(UITapGestureRecognizer *)sender;
+
 - (double) yValueFor:(double)xValue;
 
 @end

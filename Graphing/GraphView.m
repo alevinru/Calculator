@@ -30,18 +30,12 @@
 }
 
 - (CGFloat) scale {
-    return _scale? _scale: (_scale = 1);
-}
-
-
-- (void)setup
-{
-    self.contentMode = UIViewContentModeRedraw; // if our bounds changes, redraw ourselves
+    return _scale? _scale: (_scale = 10);
 }
 
 - (void)awakeFromNib
 {
-    [self setup]; // get initialized when we come out of a storyboard
+    self.contentMode = UIViewContentModeRedraw;
 }
 
 - (void)drawRect:(CGRect)rect

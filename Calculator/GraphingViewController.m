@@ -54,7 +54,7 @@
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
         self.graphView.scale *= gesture.scale;
-        NSLog(@"Pinched: %f %f", self.graphView.scale, gesture.scale );
+        //NSLog(@"Pinched: %f %f", self.graphView.scale, gesture.scale );
         gesture.scale =1.0;
     }
 }
@@ -65,6 +65,13 @@
         CGPoint translation = [gesture translationInView:self.view];
         [self.graphView setOrigin: CGPointMake(self.graphView.origin.x + translation.x, self.graphView.origin.y + translation.y)];
         [gesture setTranslation: CGPointZero inView: self.view];
+    }
+}
+
+- (IBAction)userDidTap:(UITapGestureRecognizer *) gesture {
+    if ((gesture.state == UIGestureRecognizerStateChanged) ||
+        (gesture.state == UIGestureRecognizerStateEnded)) {
+        [self.graphView setOrigin: [gesture locationInView: self.view]];
     }
 }
 
