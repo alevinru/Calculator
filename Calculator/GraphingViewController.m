@@ -47,7 +47,7 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation: (UIInterfaceOrientation) interfaceOrientation
 {
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+    return YES;
 }
 
 - (IBAction)userDidPinch:(UIPinchGestureRecognizer *) gesture {
@@ -69,7 +69,7 @@
 }
 
 - (double) yValueFor:(double)xValue {
-    NSLog(@"GraphingViewController yValyeFor program: %@", [Processor descriptionOfProgram: self.program]);
+    //NSLog(@"GraphingViewController yValyeFor program: %@", [Processor descriptionOfProgram: self.program]);
     return [Processor runProgram: self.program
              usingVariableValues: [NSDictionary dictionaryWithObject: [NSNumber numberWithDouble: xValue] forKey: @"x"]];
 }

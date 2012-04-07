@@ -232,7 +232,7 @@ typedef double(^formula2_t)(double arg1, double arg2);
         
         double result = [self popOperandOffProgramStack:stack];
         
-        NSLog(@"Processor runProgram: %f", result);
+        //NSLog(@"Processor runProgram: %f", result);
         
         return result;
         
