@@ -12,6 +12,10 @@
 
 - (double) yValueFor: (double) xValue;
 
+@property (nonatomic) CGFloat defaultScale;
+
+@property (nonatomic) CGPoint defaultOrigin;
+
 @end
 
 @interface GraphView : UIView

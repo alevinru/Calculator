@@ -13,8 +13,6 @@
 
 @property (weak, nonatomic) IBOutlet GraphView * graphView;
 
-@property (nonatomic) CGFloat scale; 
-
 @property (strong, nonatomic) NSArray* program;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
@@ -25,6 +23,12 @@
 
 - (IBAction)userDidTap:(UITapGestureRecognizer *)sender;
 
+// Datasource implementation
+
 - (double) yValueFor:(double)xValue;
+
+@property (nonatomic) CGFloat defaultScale;
+
+@property (nonatomic) CGPoint defaultOrigin;
 
 @end

@@ -13,6 +13,7 @@
 
 @synthesize datasource = _datasource, scale = _scale, origin = _origin;
 
+
 - (void) setOrigin: (CGPoint) newOrigin
 {
     if (!CGPointEqualToPoint(newOrigin, _origin)) {
@@ -20,6 +21,7 @@
         [self setNeedsDisplay];
     }
 }
+
 
 - (void) setScale: (CGFloat) newScale
 {
@@ -29,21 +31,23 @@
     }
 }
 
-- (CGFloat) scale {
-    return _scale? _scale: (_scale = 10);
-}
 
 - (void) awakeFromNib
 {
     self.contentMode = UIViewContentModeRedraw;
-    self.origin = CGPointMake(self.bounds.size.width/2, self.bounds.size.height/2);
+    
+    CGPoint defaults = [self.datasource defaultOrigin];
+    
+    self.origin = CGPointMake(defaults.x, defaults.y);
+    self.scale = [self.datasource defaultScale];
 }
+
 
 - (void) drawRect: (CGRect) toBeRedrawn
 {
     CGRect rect = self.bounds;
     
-    CGPoint originPoint = CGPointMake(self.origin.x, self.origin.y);
+    CGPoint originPoint = CGPointMake(self.bounds.size.width/2 + self.origin.x, self.bounds.size.height/2 + self.origin.y);
     
     //NSLog(@"GraphView drawRect(%f x %f), at originPoint(%f,%f) with scale of %f", rect.size.width, rect.size.height, originPoint.x, originPoint.y, self.scale);
     
