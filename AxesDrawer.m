@@ -45,6 +45,8 @@
 
 #define HASH_MARK_SIZE 3
 #define MIN_PIXELS_PER_HASHMARK 25
+#define HASH_MARK_ORIENTATION_HORISONTAL 1
+#define HASH_MARK_ORIENTATION_VERTICAL 2
 
 + (void)drawHashMarksInRect:(CGRect)bounds originAtPoint:(CGPoint)axisOrigin scale:(CGFloat)pointsPerUnit
 {
@@ -89,39 +91,41 @@
 
 	for (int offset = unitsPerHashmark; !started || stillGoing; offset += unitsPerHashmark)
 	{
-		BOOL drew = NO;
+		__block BOOL drew = NO;
 		CGFloat scaledOffset = floor(offset * pointsPerUnit);
- 		CGPoint hashMarkPoint;
+ 		__block CGPoint hashMarkPoint;
 		hashMarkPoint.x = axisOrigin.x+scaledOffset;
 		hashMarkPoint.y = axisOrigin.y;
-		if (CGRectContainsPoint(bounds, hashMarkPoint)) {
-			CGContextMoveToPoint(context, hashMarkPoint.x, hashMarkPoint.y-HASH_MARK_SIZE);
-			CGContextAddLineToPoint(context, hashMarkPoint.x, hashMarkPoint.y+HASH_MARK_SIZE);
-			[self drawString:[NSString stringWithFormat:@"%d", offset] atPoint:hashMarkPoint withAnchor:ANCHOR_TOP];
-			drew = YES;
-		}
+
+        void (^drawHashMark) (int, int, int) =  ^ (int orientation, int leftOrRight, int anchor) {
+            
+            int horisontal = (orientation == HASH_MARK_ORIENTATION_HORISONTAL) ? 1 : 0;
+            int vertical = (orientation == HASH_MARK_ORIENTATION_VERTICAL) ? 1 : 0;
+            
+            if (CGRectContainsPoint(bounds, hashMarkPoint)) {
+                CGContextMoveToPoint(context, hashMarkPoint.x -HASH_MARK_SIZE * horisontal, hashMarkPoint.y-HASH_MARK_SIZE * vertical);
+                CGContextAddLineToPoint(context, hashMarkPoint.x+HASH_MARK_SIZE *horisontal, hashMarkPoint.y+HASH_MARK_SIZE * vertical);
+                [self drawString:[NSString stringWithFormat:@"%d", leftOrRight * offset] atPoint:hashMarkPoint withAnchor: anchor];
+                drew = YES;
+            }
+        };
+        		
+        drawHashMark (HASH_MARK_ORIENTATION_VERTICAL,1,ANCHOR_TOP);
+
+        
 		hashMarkPoint.x = axisOrigin.x-scaledOffset;
-		if (CGRectContainsPoint(bounds, hashMarkPoint)) {
-			CGContextMoveToPoint(context, hashMarkPoint.x, hashMarkPoint.y-HASH_MARK_SIZE);
-			CGContextAddLineToPoint(context, hashMarkPoint.x, hashMarkPoint.y+HASH_MARK_SIZE);
-			[self drawString:[NSString stringWithFormat:@"%d", -offset] atPoint:hashMarkPoint withAnchor:ANCHOR_TOP];
-			drew = YES;
-		}
+        
+        drawHashMark (HASH_MARK_ORIENTATION_VERTICAL,-1,ANCHOR_TOP);
+
 		hashMarkPoint.x = axisOrigin.x;
 		hashMarkPoint.y = axisOrigin.y-scaledOffset;
-		if (CGRectContainsPoint(bounds, hashMarkPoint)) {
-			CGContextMoveToPoint(context, hashMarkPoint.x-HASH_MARK_SIZE, hashMarkPoint.y);
-			CGContextAddLineToPoint(context, hashMarkPoint.x+HASH_MARK_SIZE, hashMarkPoint.y);
-			[self drawString:[NSString stringWithFormat:@"%d", offset] atPoint:hashMarkPoint withAnchor:ANCHOR_LEFT];
-			drew = YES;
-		}
+        
+        drawHashMark (HASH_MARK_ORIENTATION_HORISONTAL,1,ANCHOR_LEFT);
+
 		hashMarkPoint.y = axisOrigin.y+scaledOffset;
-		if (CGRectContainsPoint(bounds, hashMarkPoint)) {
-			CGContextMoveToPoint(context, hashMarkPoint.x-HASH_MARK_SIZE, hashMarkPoint.y);
-			CGContextAddLineToPoint(context, hashMarkPoint.x+HASH_MARK_SIZE, hashMarkPoint.y);
-			[self drawString:[NSString stringWithFormat:@"%d", -offset] atPoint:hashMarkPoint withAnchor:ANCHOR_LEFT];
-			drew = YES;
-		}
+        
+        drawHashMark (HASH_MARK_ORIENTATION_HORISONTAL,-1,ANCHOR_LEFT);
+        
 		if (drew) started = YES;
 		stillGoing = drew;
 	}
