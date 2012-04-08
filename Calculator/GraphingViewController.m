@@ -133,7 +133,7 @@
 - (IBAction)userDidTap:(UITapGestureRecognizer *) gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
-        [self.graphView setOrigin: [gesture locationInView: self.view]];
+        [self.graphView setOrigin: CGPointApplyAffineTransform([gesture locationInView: self.graphView], CGAffineTransformMakeTranslation(-self.graphView.bounds.size.width/2, -self.graphView.bounds.size.height/2))];
     }
 }
 

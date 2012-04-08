@@ -24,6 +24,7 @@
 		D92DAAD91523609C00A8D150 /* Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = D92DAAD81523609C00A8D150 /* Processor.m */; };
 		D9BFC529152B8F1400D92A1F /* GraphingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BFC528152B8F1400D92A1F /* GraphingViewController.m */; };
 		D9BFC52D152B90D400D92A1F /* GraphView.m in Sources */ = {isa = PBXBuildFile; fileRef = D9BFC52C152B90D400D92A1F /* GraphView.m */; };
+		D9E7966B1531DCAF00096900 /* CalculatorIconRetina.png in Resources */ = {isa = PBXBuildFile; fileRef = D9E7966A1531DCAF00096900 /* CalculatorIconRetina.png */; };
 		D9E9922615247B7700C43B78 /* Processor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D9E9922415247B7700C43B78 /* Processor.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +66,7 @@
 		D9BFC528152B8F1400D92A1F /* GraphingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphingViewController.m; path = Calculator/GraphingViewController.m; sourceTree = "<group>"; };
 		D9BFC52B152B90D400D92A1F /* GraphView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GraphView.h; path = Graphing/GraphView.h; sourceTree = "<group>"; };
 		D9BFC52C152B90D400D92A1F /* GraphView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GraphView.m; path = Graphing/GraphView.m; sourceTree = "<group>"; };
+		D9E7966A1531DCAF00096900 /* CalculatorIconRetina.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalculatorIconRetina.png; sourceTree = SOURCE_ROOT; };
 		D9E9922515247B7700C43B78 /* Processor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Processor.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,6 +157,7 @@
 		D92DAAA61522F21000A8D150 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D9E7966A1531DCAF00096900 /* CalculatorIconRetina.png */,
 				D92DAAA71522F21000A8D150 /* Calculator-Info.plist */,
 				D92DAAA81522F21000A8D150 /* InfoPlist.strings */,
 				D92DAAAB1522F21000A8D150 /* main.m */,
@@ -255,6 +258,7 @@
 			files = (
 				D92DAAAA1522F21000A8D150 /* InfoPlist.strings in Resources */,
 				D92DAAB31522F21000A8D150 /* MainStoryboard.storyboard in Resources */,
+				D9E7966B1531DCAF00096900 /* CalculatorIconRetina.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
