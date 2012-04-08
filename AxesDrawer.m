@@ -93,15 +93,16 @@
 	{
 		__block BOOL drew = NO;
 		CGFloat scaledOffset = floor(offset * pointsPerUnit);
- 		__block CGPoint hashMarkPoint;
-		hashMarkPoint.x = axisOrigin.x+scaledOffset;
-		hashMarkPoint.y = axisOrigin.y;
 
         void (^drawHashMark) (int, int, int) =  ^ (int orientation, int leftOrRight, int anchor) {
             
             int horisontal = (orientation == HASH_MARK_ORIENTATION_HORISONTAL) ? 1 : 0;
             int vertical = (orientation == HASH_MARK_ORIENTATION_VERTICAL) ? 1 : 0;
             
+            __block CGPoint hashMarkPoint;
+            hashMarkPoint.x = axisOrigin.x+scaledOffset*vertical*leftOrRight;
+            hashMarkPoint.y = axisOrigin.y-scaledOffset*horisontal*leftOrRight;
+
             if (CGRectContainsPoint(bounds, hashMarkPoint)) {
                 CGContextMoveToPoint(context, hashMarkPoint.x -HASH_MARK_SIZE * horisontal, hashMarkPoint.y-HASH_MARK_SIZE * vertical);
                 CGContextAddLineToPoint(context, hashMarkPoint.x+HASH_MARK_SIZE *horisontal, hashMarkPoint.y+HASH_MARK_SIZE * vertical);
@@ -111,19 +112,9 @@
         };
         		
         drawHashMark (HASH_MARK_ORIENTATION_VERTICAL,1,ANCHOR_TOP);
-
-        
-		hashMarkPoint.x = axisOrigin.x-scaledOffset;
-        
         drawHashMark (HASH_MARK_ORIENTATION_VERTICAL,-1,ANCHOR_TOP);
-
-		hashMarkPoint.x = axisOrigin.x;
-		hashMarkPoint.y = axisOrigin.y-scaledOffset;
         
         drawHashMark (HASH_MARK_ORIENTATION_HORISONTAL,1,ANCHOR_LEFT);
-
-		hashMarkPoint.y = axisOrigin.y+scaledOffset;
-        
         drawHashMark (HASH_MARK_ORIENTATION_HORISONTAL,-1,ANCHOR_LEFT);
         
 		if (drew) started = YES;
