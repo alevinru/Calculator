@@ -24,7 +24,7 @@
 - (void) setProgram:(NSArray *) newProgram {
     if (![newProgram isEqualToArray: _program]) {
         _program = newProgram ? [newProgram copy]: nil;
-        [self.view setNeedsDisplay];
+        [self.graphView setNeedsDisplay];
         [self.titleLabel setText: [Processor descriptionOfProgram: newProgram]];
     }
 }
@@ -124,9 +124,9 @@
 - (IBAction)userDidPan:(UIPanGestureRecognizer *) gesture {
     if ((gesture.state == UIGestureRecognizerStateChanged) ||
         (gesture.state == UIGestureRecognizerStateEnded)) {
-        CGPoint translation = [gesture translationInView:self.view];
+        CGPoint translation = [gesture translationInView:self.graphView];
         [self.graphView setOrigin: CGPointMake(self.graphView.origin.x + translation.x, self.graphView.origin.y + translation.y)];
-        [gesture setTranslation: CGPointZero inView: self.view];
+        [gesture setTranslation: CGPointZero inView: self.graphView];
     }
 }
 
