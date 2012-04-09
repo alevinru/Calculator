@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "GraphView.h"
+#import "SplitViewBarButtonItemPresenter.h"
 
-@interface GraphingViewController : UIViewController <GraphViewDatasource>
+@interface GraphingViewController : UIViewController <GraphViewDatasource, SplitViewBarButtonItemPresenter>
+
 
 @property (weak, nonatomic) IBOutlet GraphView * graphView;
 
 @property (strong, nonatomic) NSArray* program;
 
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+
+@property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
 
 - (IBAction)userDidPinch:(UIPinchGestureRecognizer *) gesture;
 

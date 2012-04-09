@@ -21,6 +21,7 @@
 		D92DAAC81522F21100A8D150 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D92DAAC61522F21100A8D150 /* InfoPlist.strings */; };
 		D92DAACB1522F21100A8D150 /* CalculatorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D92DAACA1522F21100A8D150 /* CalculatorTests.m */; };
 		D92DAAD91523609C00A8D150 /* Processor.m in Sources */ = {isa = PBXBuildFile; fileRef = D92DAAD81523609C00A8D150 /* Processor.m */; };
+		D945F635153361F100BB3EF7 /* RotatableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D945F633153361F100BB3EF7 /* RotatableViewController.m */; };
 		D96730431532D6F100BA11B8 /* IpadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96730421532D6F100BA11B8 /* IpadStoryboard.storyboard */; };
 		D96730451532E80E00BA11B8 /* CalculatorIconRetina.114.png in Resources */ = {isa = PBXBuildFile; fileRef = D96730441532E80E00BA11B8 /* CalculatorIconRetina.114.png */; };
 		D96730491532E88700BA11B8 /* Calculator72.png in Resources */ = {isa = PBXBuildFile; fileRef = D96730481532E88700BA11B8 /* Calculator72.png */; };
@@ -64,6 +65,9 @@
 		D92DAACA1522F21100A8D150 /* CalculatorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalculatorTests.m; sourceTree = "<group>"; };
 		D92DAAD71523609C00A8D150 /* Processor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Processor.h; sourceTree = "<group>"; };
 		D92DAAD81523609C00A8D150 /* Processor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Processor.m; sourceTree = "<group>"; };
+		D945F632153361F100BB3EF7 /* RotatableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RotatableViewController.h; sourceTree = "<group>"; };
+		D945F633153361F100BB3EF7 /* RotatableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RotatableViewController.m; sourceTree = "<group>"; };
+		D945F634153361F100BB3EF7 /* SplitViewBarButtonItemPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SplitViewBarButtonItemPresenter.h; sourceTree = "<group>"; };
 		D96730421532D6F100BA11B8 /* IpadStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = IpadStoryboard.storyboard; sourceTree = "<group>"; };
 		D96730441532E80E00BA11B8 /* CalculatorIconRetina.114.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CalculatorIconRetina.114.png; sourceTree = "<group>"; };
 		D96730481532E88700BA11B8 /* Calculator72.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Calculator72.png; path = Calculator/Calculator72.png; sourceTree = SOURCE_ROOT; };
@@ -167,6 +171,9 @@
 		D92DAAA61522F21000A8D150 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D945F632153361F100BB3EF7 /* RotatableViewController.h */,
+				D945F633153361F100BB3EF7 /* RotatableViewController.m */,
+				D945F634153361F100BB3EF7 /* SplitViewBarButtonItemPresenter.h */,
 				D96730481532E88700BA11B8 /* Calculator72.png */,
 				D96730441532E80E00BA11B8 /* CalculatorIconRetina.114.png */,
 				D9E7966A1531DCAF00096900 /* CalculatorIconRetina.png */,
@@ -317,6 +324,7 @@
 				D9BFC529152B8F1400D92A1F /* GraphingViewController.m in Sources */,
 				D9BFC52D152B90D400D92A1F /* GraphView.m in Sources */,
 				D967304C1532EF9D00BA11B8 /* AxesDrawer.m in Sources */,
+				D945F635153361F100BB3EF7 /* RotatableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

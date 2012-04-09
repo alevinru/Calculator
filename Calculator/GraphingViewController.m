@@ -18,8 +18,10 @@
 @implementation GraphingViewController
 
 @synthesize titleLabel = _titleLabel;
+@synthesize toolbar = _toolbar;
 @synthesize graphView = _graphView, program = _program;
 @synthesize defaultScale = _defaultScale, defaultOrigin = _defaultOrigin;
+@synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 - (void) setProgram:(NSArray *) newProgram {
     if (![newProgram isEqualToArray: _program]) {
@@ -33,6 +35,22 @@
     return [NSUserDefaults standardUserDefaults];
 }
 
+
+- (void)handleSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+    if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+    if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+    self.toolbar.items = toolbarItems;
+    _splitViewBarButtonItem = splitViewBarButtonItem;
+}
+
+- (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
+{
+    if (splitViewBarButtonItem != _splitViewBarButtonItem) {
+        [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
+    }
+}
 
 - (void) viewDidLoad
 {
@@ -97,6 +115,7 @@
 
 - (void) viewDidUnload
 {
+    [self setToolbar:nil];
     [super viewDidUnload];
 
     [self setProgram:nil];

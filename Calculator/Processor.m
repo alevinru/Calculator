@@ -119,6 +119,9 @@ typedef double(^formula2_t)(double arg1, double arg2);
                  return cos(arg);
              }], @"cos", 
             [PrimitiveFunction unaryWithFormula: ^(double arg) {
+                return exp(arg);
+            }], @"exp", 
+            [PrimitiveFunction unaryWithFormula: ^(double arg) {
                  return - arg;
              }], @"+-", 
             [PrimitiveFunction ofDimensionality: 2
