@@ -49,7 +49,7 @@
 
     - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
     {
-        return (interfaceOrientation == UIInterfaceOrientationPortrait);
+        return ([UIDevice currentDevice].userInterfaceIdiom == UIUserInterfaceIdiomPad) ? YES : (interfaceOrientation == UIInterfaceOrientationPortrait);
     }
 
     - (IBAction) displayProgram {
@@ -98,6 +98,10 @@
         [self displayAsInput: theOperation];
         [self.brain pushVariable: (self.resultsDisplay.text = theOperation)]; 
         
+    }
+
+    - (IBAction)showGraphPressed {
+        [self setupGraph: [self.splitViewController.viewControllers objectAtIndex:1]];
     }
 
     - (void) operate: (NSString*) theOperation {
@@ -162,12 +166,15 @@
         }
     }
 
+    - (void) setupGraph: (GraphingViewController *) gvc {
+        [self enterPressed];
+        [gvc setProgram: self.brain.program];
+    }
+
     - (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id) sender {
+        //NSLog(@"Preparing to: %@", segue.identifier);
         if ([segue.identifier isEqualToString: @"Show the graph"])
-            [self enterPressed];
-            [segue.destinationViewController setProgram: self.brain.program];
-            //NSLog(@"Preparing to: %@", segue.identifier);
-        
+            [self setupGraph: segue.destinationViewController];
     }
 
 @end

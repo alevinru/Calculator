@@ -34,4 +34,6 @@
     
     - (IBAction) variablePressed:(UIButton *) sender;
 
+    - (IBAction)showGraphPressed;
+
 @end

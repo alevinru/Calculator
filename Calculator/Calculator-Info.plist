@@ -15,6 +15,8 @@
 			<key>CFBundleIconFiles</key>
 			<array>
 				<string>CalculatorIconRetina.png</string>
+				<string>CalculatorIconRetina.114.png</string>
+				<string>Calculator72.png</string>
 			</array>
 		</dict>
 	</dict>
@@ -36,6 +38,8 @@
 	<true/>
 	<key>UIMainStoryboardFile</key>
 	<string>MainStoryboard</string>
+	<key>UIMainStoryboardFile~ipad</key>
+	<string>IpadStoryboard</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

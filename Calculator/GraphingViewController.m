@@ -137,4 +137,13 @@
     }
 }
 
+- (IBAction)userWantsZoomIn:(UIGestureRecognizer*) gesture {
+    if (gesture.state == UIGestureRecognizerStateEnded)
+        [self.graphView setScale: self.graphView.scale * 2.0];
+}
+
+- (IBAction)userWantsZoomOut:(id)sender {
+    [self.graphView setScale: self.graphView.scale / 2.0];
+}
+
 @end

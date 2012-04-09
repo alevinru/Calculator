@@ -23,6 +23,10 @@
 
 - (IBAction)userDidTap:(UITapGestureRecognizer *)sender;
 
+- (IBAction)userWantsZoomIn:(UIGestureRecognizer*) gesture;
+
+- (IBAction)userWantsZoomOut:(id)sender;
+
 // Datasource implementation
 
 - (double) yValueFor:(double)xValue;
