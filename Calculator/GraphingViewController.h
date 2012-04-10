@@ -20,6 +20,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 
 @property (weak, nonatomic) IBOutlet UIToolbar *toolbar;
+@property (weak, nonatomic) IBOutlet UINavigationBar *navbar;
 
 - (IBAction)userDidPinch:(UIPinchGestureRecognizer *) gesture;
 

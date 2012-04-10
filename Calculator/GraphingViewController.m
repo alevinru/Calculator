@@ -13,23 +13,38 @@
 
 @property (nonatomic, readonly) NSUserDefaults * defaults;
 
+- (void) setFunctionLabel: (NSString *) title;
+
 @end
 
 @implementation GraphingViewController
 
 @synthesize titleLabel = _titleLabel;
-@synthesize toolbar = _toolbar;
+@synthesize toolbar = _toolbar, navbar = _navbar;
 @synthesize graphView = _graphView, program = _program;
 @synthesize defaultScale = _defaultScale, defaultOrigin = _defaultOrigin;
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
+
+
+- (void) setFunctionLabel: (NSString *) title {
+    if (self.titleLabel)
+        [self.titleLabel setText: title];
+    else if (self.navbar)
+        [self.navbar.topItem setTitle: title];
+    
+}
+
 
 - (void) setProgram:(NSArray *) newProgram {
     if (![newProgram isEqualToArray: _program]) {
         _program = newProgram ? [newProgram copy]: nil;
         [self.graphView setNeedsDisplay];
-        [self.titleLabel setText: [Processor descriptionOfProgram: newProgram]];
+        
+        [self setFunctionLabel: [NSString stringWithFormat:@"y = %@", [Processor descriptionOfProgram: newProgram]]];
+        
     }
 }
+
 
 - (NSUserDefaults*) defaults {
     return [NSUserDefaults standardUserDefaults];
@@ -37,13 +52,18 @@
 
 
 - (void)handleSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
-{
-    NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
-    if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
-    if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
-    self.toolbar.items = toolbarItems;
+{   
+    if (self.toolbar) {
+        NSMutableArray *toolbarItems = [self.toolbar.items mutableCopy];
+        if (_splitViewBarButtonItem) [toolbarItems removeObject:_splitViewBarButtonItem];
+        if (splitViewBarButtonItem) [toolbarItems insertObject:splitViewBarButtonItem atIndex:0];
+        self.toolbar.items = toolbarItems;
+    } else if (self.navbar) {
+        [self.navbar.topItem setLeftBarButtonItem: splitViewBarButtonItem];
+    }
     _splitViewBarButtonItem = splitViewBarButtonItem;
 }
+
 
 - (void)setSplitViewBarButtonItem:(UIBarButtonItem *)splitViewBarButtonItem
 {
@@ -51,6 +71,7 @@
         [self handleSplitViewBarButtonItem:splitViewBarButtonItem];
     }
 }
+
 
 - (void) viewDidLoad
 {
@@ -61,7 +82,11 @@
     
     if (!self.graphView.datasource)
         self.graphView.datasource = self;
+    
+    [self setFunctionLabel: @"Define a function using left panel"];
+    
 }
+
 
 - (double) yValueFor:(double)xValue {
     //NSLog(@"GraphingViewController yValyeFor program: %@", [Processor descriptionOfProgram: self.program]);
@@ -69,12 +94,14 @@
              usingVariableValues: [NSDictionary dictionaryWithObject: [NSNumber numberWithDouble: xValue] forKey: @"x"]];
 }
 
+
 - (CGFloat) defaultScale {
     CGFloat scale =  [self.defaults doubleForKey: @"defaultScale"];
     
     return scale > 0 ? scale : 1;
     
 }
+
 
 - (void) setDefaultScale: (CGFloat) newScale {
     [self.defaults setDouble: newScale forKey: @"defaultScale"];
