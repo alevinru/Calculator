@@ -467,11 +467,9 @@
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="datasource" destination="LQX-Oy-4nF" id="ryT-CC-Sd3"/>
-                                    <outletCollection property="gestureRecognizers" destination="6QW-Tk-3KB" appends="YES" id="VPK-jO-vXi"/>
-                                    <outletCollection property="gestureRecognizers" destination="NVQ-oQ-h5c" appends="YES" id="UQ8-39-4s9"/>
                                     <outletCollection property="gestureRecognizers" destination="N6M-QJ-2KC" appends="YES" id="827-Jh-nFO"/>
-                                    <outletCollection property="gestureRecognizers" destination="uGA-TH-gT8" appends="YES" id="hxd-qf-4HP"/>
                                     <outletCollection property="gestureRecognizers" destination="fuo-l1-qov" appends="YES" id="xdU-7F-KYY"/>
+                                    <outletCollection property="gestureRecognizers" destination="cBX-sP-t9f" appends="YES" id="F6S-03-RHv"/>
                                 </connections>
                             </view>
                             <navigationBar contentMode="scaleToFill" id="RAT-In-wdk">
@@ -491,24 +489,9 @@
                         <outlet property="navbar" destination="RAT-In-wdk" id="DXO-fQ-WsN"/>
                     </connections>
                 </viewController>
-                <pinchGestureRecognizer id="6QW-Tk-3KB">
-                    <connections>
-                        <action selector="userDidPinch:" destination="LQX-Oy-4nF" id="PwM-0o-Uju"/>
-                    </connections>
-                </pinchGestureRecognizer>
-                <panGestureRecognizer minimumNumberOfTouches="1" id="NVQ-oQ-h5c">
-                    <connections>
-                        <action selector="userDidPan:" destination="LQX-Oy-4nF" id="oqd-tX-kIB"/>
-                    </connections>
-                </panGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="3" id="N6M-QJ-2KC">
                     <connections>
                         <action selector="userDidTap:" destination="LQX-Oy-4nF" id="09e-sJ-Dmv"/>
-                    </connections>
-                </tapGestureRecognizer>
-                <tapGestureRecognizer numberOfTapsRequired="2" id="uGA-TH-gT8" userLabel="ZoomIN Gesture">
-                    <connections>
-                        <action selector="userWantsZoomIn:" destination="LQX-Oy-4nF" id="IYG-LH-mTT"/>
                     </connections>
                 </tapGestureRecognizer>
                 <tapGestureRecognizer numberOfTapsRequired="2" numberOfTouchesRequired="2" id="fuo-l1-qov" userLabel="ZoomOutGesture">
@@ -516,10 +499,56 @@
                         <action selector="userWantsZoomOut:" destination="LQX-Oy-4nF" id="4A2-Mi-cJL"/>
                     </connections>
                 </tapGestureRecognizer>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="cBX-sP-t9f">
+                    <connections>
+                        <action selector="userDidPan:" destination="LQX-Oy-4nF" id="n21-04-IWN"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-6" y="-640"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="CalculatorViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/CalculatorViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="backPressed"/>
+                <relationship kind="action" name="clearPressed"/>
+                <relationship kind="action" name="digitPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="displayProgram"/>
+                <relationship kind="action" name="enterPressed"/>
+                <relationship kind="action" name="operationPressed:" candidateClass="UIButton"/>
+                <relationship kind="action" name="showGraphPressed"/>
+                <relationship kind="action" name="signChangePressed"/>
+                <relationship kind="action" name="variablePressed:" candidateClass="UIButton"/>
+                <relationship kind="outlet" name="inputDisplay" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="resultsDisplay" candidateClass="UITextField"/>
+            </relationships>
+        </class>
+        <class className="GraphView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphView.h"/>
+            <relationships>
+                <relationship kind="outlet" name="datasource"/>
+            </relationships>
+        </class>
+        <class className="GraphingViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphingViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="userDidPan:" candidateClass="UIPanGestureRecognizer"/>
+                <relationship kind="action" name="userDidPinch:" candidateClass="UIPinchGestureRecognizer"/>
+                <relationship kind="action" name="userDidTap:" candidateClass="UITapGestureRecognizer"/>
+                <relationship kind="action" name="userWantsZoomIn:" candidateClass="UIGestureRecognizer"/>
+                <relationship kind="action" name="userWantsZoomOut:"/>
+                <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
+                <relationship kind="outlet" name="navbar" candidateClass="UINavigationBar"/>
+                <relationship kind="outlet" name="titleLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="toolbar" candidateClass="UIToolbar"/>
+            </relationships>
+        </class>
+        <class className="RotatableViewController" superclassName="UISplitViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/RotatableViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar" statusBarStyle="blackTranslucent"/>
         <simulatedOrientationMetrics key="orientation"/>

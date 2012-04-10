@@ -13,7 +13,7 @@
 
 @property (nonatomic, readonly) NSUserDefaults * defaults;
 
-- (void) setFunctionLabel: (NSString *) title;
+- (void) setFunctionLabel;
 
 @end
 
@@ -26,7 +26,8 @@
 @synthesize splitViewBarButtonItem = _splitViewBarButtonItem;
 
 
-- (void) setFunctionLabel: (NSString *) title {
+- (void) setFunctionLabel{
+    NSString * title = self.program ? [NSString stringWithFormat:@"y = %@", [Processor descriptionOfProgram: self.program]] : @"Define a function using left panel";
     if (self.titleLabel)
         [self.titleLabel setText: title];
     else if (self.navbar)
@@ -38,10 +39,8 @@
 - (void) setProgram:(NSArray *) newProgram {
     if (![newProgram isEqualToArray: _program]) {
         _program = newProgram ? [newProgram copy]: nil;
+        [self setFunctionLabel];
         [self.graphView setNeedsDisplay];
-        
-        [self setFunctionLabel: [NSString stringWithFormat:@"y = %@", [Processor descriptionOfProgram: newProgram]]];
-        
     }
 }
 
@@ -83,8 +82,45 @@
     if (!self.graphView.datasource)
         self.graphView.datasource = self;
     
-    [self setFunctionLabel: @"Define a function using left panel"];
+    [self setFunctionLabel];
     
+    
+    NSMutableDictionary * storyBoardRecognizers = [[NSMutableDictionary alloc] init];
+    
+    [self.graphView.gestureRecognizers enumerateObjectsUsingBlock: ^(id recognizer, NSUInteger idx, BOOL *stop) {
+        if ([recognizer isKindOfClass: [UIPanGestureRecognizer class]]) {
+            [storyBoardRecognizers setObject: recognizer forKey: @"pan"];
+        } else if ([recognizer isKindOfClass: [UIPinchGestureRecognizer class]]) {
+            [storyBoardRecognizers setObject: recognizer forKey: @"pinch"];
+        } else if ([recognizer isKindOfClass: [UITapGestureRecognizer class]]) {
+            if ([recognizer numberOfTapsRequired] == 2) {
+                if ([recognizer numberOfTouchesRequired] == 2) 
+                    [storyBoardRecognizers setObject: recognizer forKey: @"twofingerdoubletap"];
+                else
+                    [storyBoardRecognizers setObject: recognizer forKey: @"doubletap"];
+            } else if ([recognizer numberOfTapsRequired] == 3) {
+                [storyBoardRecognizers setObject: recognizer forKey: @"tripletap"];
+            }
+        }
+    }];
+    
+
+    if (![storyBoardRecognizers objectForKey: @"pan"]) {
+        [self.graphView addGestureRecognizer: [[UIPanGestureRecognizer alloc] initWithTarget: self action:@selector(userDidPan:)]];
+        NSLog(@"GraphingViewController did load and found no pan recognizer");
+    }
+    
+    if (![storyBoardRecognizers objectForKey: @"pinch"]) {
+        [self.graphView addGestureRecognizer: [[UIPinchGestureRecognizer alloc] initWithTarget: self action:@selector(userDidPinch:)]];
+        NSLog(@"GraphingViewController did load and found no pinch recognizer");
+    }
+    
+    if (![storyBoardRecognizers objectForKey: @"doubletap"]) {
+        UITapGestureRecognizer * recognizer = [UITapGestureRecognizer alloc];
+        [self.graphView addGestureRecognizer: [recognizer initWithTarget: self action:@selector(userWantsZoomIn:)]];
+        recognizer.numberOfTapsRequired = 2;
+        NSLog(@"GraphingViewController did load and found no doubletap recognizer");
+    }
 }
 
 
