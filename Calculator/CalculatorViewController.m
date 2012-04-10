@@ -58,7 +58,7 @@
 
     - (void) displayAsInput: (NSString*) data {
         
-        self.inputDisplay.text = self.isInteractive ? [self.inputDisplay.text stringByAppendingFormat: @" %@", data] : data;
+        self.inputDisplay.text = [Processor descriptionOfProgram: self.brain.program];//self.isInteractive ? [self.inputDisplay.text stringByAppendingFormat: @" %@", data] : data;
         
         self.isInteractive = YES;
         
@@ -95,8 +95,8 @@
         NSString * theOperation = sender.currentTitle;
         
         [self enterPressed];
-        [self displayAsInput: theOperation];
         [self.brain pushVariable: (self.resultsDisplay.text = theOperation)]; 
+        [self displayAsInput: theOperation];
         
     }
 
@@ -106,18 +106,18 @@
 
     - (void) operate: (NSString*) theOperation {
         [self enterPressed];
-        [self displayAsInput: theOperation];
         
         self.resultsDisplay.text = [NSString stringWithFormat: @"%g", [self.brain performOperation: theOperation]];
+        
+        [self displayAsInput: theOperation];
         
     }
 
     - (IBAction) enterPressed {
         
-        if (self.userIsEntering) {
-            [self displayAsInput: self.resultsDisplay.text];
-            
+        if (self.userIsEntering) {            
             [self.brain pushOperand: [self.resultsDisplay.text doubleValue]];
+            [self displayAsInput: self.resultsDisplay.text];
         }
 
         self.userIsEntering
